@@ -6,7 +6,7 @@ function TodoList() {
   const [todos, setTodos] = useState([]);
 
   useEffect(() => {
-    const todoList = JSON.parse(localStorage.getItem("TodoList"));
+    const todoList = JSON.parse(localStorage.getItem("TodoList")) || [];
     setTodos(todoList);
   }, []);
 
@@ -18,7 +18,7 @@ function TodoList() {
     const newTodos = [todo, ...todos];
 
     localStorage.setItem("TodoList", JSON.stringify(newTodos));
-    const todoList = JSON.parse(localStorage.getItem("TodoList"));
+    const todoList = JSON.parse(localStorage.getItem("TodoList")) || [];
     setTodos(todoList);
   };
 
@@ -28,7 +28,7 @@ function TodoList() {
     }
 
     let NewTodoUpdated = [];
-    const updatedList = JSON.parse(localStorage.getItem("TodoList"));
+    const updatedList = JSON.parse(localStorage.getItem("TodoList")) || [];
     NewTodoUpdated = updatedList.map((item) =>
       item.id === todoId ? newValue : item
     );
@@ -44,7 +44,7 @@ function TodoList() {
   const removeTodo = (id) => {
     const removedArr = [...todos].filter((todo) => todo.id !== id);
     localStorage.setItem("TodoList", JSON.stringify(removedArr));
-    const removedTodoList = JSON.parse(localStorage.getItem("TodoList"));
+    const removedTodoList = JSON.parse(localStorage.getItem("TodoList")) || [];
     setTodos(removedTodoList);
   };
 
